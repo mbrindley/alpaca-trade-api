@@ -8,7 +8,7 @@ module Alpaca
           :created_at, :expired_at, :extended_hours, :failed_at, :filled_at, :filled_avg_price,
           :filled_qty, :legs, :limit_price, :order_class, :qty, :replaced_at, :replaced_by,
           :replaces, :side, :status, :stop_price, :submitted_at, :symbol, :time_in_force,
-          :type, :updated_at
+          :type, :updated_at, :trail_percent, :trail_price
 
         def initialize(json)
           @id = json['id']
@@ -39,6 +39,8 @@ module Alpaca
           @time_in_force = json['time_in_force']
           @type = json['type']
           @updated_at = json['updated_at']
+          @updated_at = json['trail_percent']
+          @updated_at = json['trail_price']
         end
       end
     end
