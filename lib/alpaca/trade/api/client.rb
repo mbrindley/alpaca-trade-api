@@ -114,7 +114,7 @@ module Alpaca
 
         def new_order(symbol:, side:, type:, time_in_force:, qty: nil, notional: nil,
           limit_price: nil, stop_price: nil, extended_hours: false, client_order_id: nil,
-          order_class: nil, take_profit: nil, stop_loss: nil)
+          order_class: nil, take_profit: nil, stop_loss: nil, trail_percent: nil, trail_price: nil)
 
           params = {
             symbol: symbol,
@@ -129,7 +129,9 @@ module Alpaca
             take_profit: take_profit,
             stop_loss: stop_loss,
             extended_hours: extended_hours,
-            client_order_id: client_order_id
+            client_order_id: client_order_id,
+            trail_percent: trail_percent,
+            trail_price: trail_price
           }
           response = post_request(endpoint, 'v2/orders', params.compact)
           raise InsufficientFunds, JSON.parse(response.body)['message'] if response.status == 403
